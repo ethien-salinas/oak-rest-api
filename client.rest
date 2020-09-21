@@ -1,0 +1,17 @@
+GET http://localhost:8000/users HTTP/1.1
+###
+GET http://localhost:8000/users/ethien HTTP/1.1
+###
+GET http://localhost:8000/users/edgar HTTP/1.1
+###
+POST http://localhost:8000/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "sample",
+  "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+###
+PUT http://localhost:8000/users/alex HTTP/1.1
+###
+DELETE http://localhost:8000/users/youstar HTTP/1.1
