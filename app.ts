@@ -1,5 +1,6 @@
 import {
   Application,
+  helpers,
   Router,
   RouterContext,
 } from "https://deno.land/x/oak/mod.ts";
@@ -29,9 +30,6 @@ userRouter.get("/users/:username", (ctx: RouterContext) => {
 userRouter.post("/users", async (ctx: RouterContext) => {
   const { request, response } = ctx;
   const reqBody = await request.body({ type: "json" });
-  // console.log(`reqBody: ${JSON.stringify(await reqBody.value)}`);
-  // const reqBodyValue = await reqBody.value;
-  // console.log(`reqBodyValue: ${JSON.stringify(reqBodyValue)}`);
   response.status = 201;
   response.body = {
     sucess: true,
@@ -39,13 +37,25 @@ userRouter.post("/users", async (ctx: RouterContext) => {
     data: await reqBody.value,
   };
 });
-userRouter.put("/users/:username", (ctx: RouterContext) => {
-  const username = ctx.params.username;
-  ctx.response.body = `[PUT] /users/${username}`;
+userRouter.put("/users/:username", async (ctx: RouterContext) => {
+  const { request, response } = ctx;
+  const { username } = helpers.getQuery(ctx, { mergeParams: true });
+  const reqBody = await request.body({ type: "json" });
+  response.status = 200;
+  response.body = {
+    sucess: true,
+    msg: `[PUT] /users/${username}`,
+    data: await reqBody.value,
+  };
 });
 userRouter.delete("/users/:username", (ctx: RouterContext) => {
-  const username = ctx.params.username;
-  ctx.response.body = `[DELETE] /users/${username}`;
+  const { params, response } = ctx;
+  response.status = 200;
+  response.body = {
+    sucess: true,
+    msg: `[DELETE] /users/${params.username}`,
+    data: null,
+  };
 });
 
 app.use(userRouter.routes());

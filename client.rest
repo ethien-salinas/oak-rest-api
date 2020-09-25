@@ -13,5 +13,19 @@ Content-Type: application/json
 }
 ###
 PUT http://localhost:8000/users/alex HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "alex_borregoViudo",
+  "password": "qwerty"
+}
 ###
-DELETE http://localhost:8000/users/youstar HTTP/1.1
+PUT http://localhost:8000/users/ana HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "ana_borregoviudo",
+  "password": "qwerty"
+}
+###
+DELETE http://localhost:8000/users/yoeli-ovando HTTP/1.1
