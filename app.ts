@@ -29,7 +29,7 @@ userRouter.get("/users/:username", (ctx: RouterContext) => {
 });
 userRouter.post("/users", async (ctx: RouterContext) => {
   const { request, response } = ctx;
-  const reqBody = await request.body({ type: "json" });
+  const reqBody = request.body({ type: "json" });
   response.status = 201;
   response.body = {
     sucess: true,
