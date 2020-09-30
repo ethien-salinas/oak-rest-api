@@ -3,6 +3,8 @@ import {
   Router,
   RouterContext,
 } from "https://deno.land/x/oak/mod.ts";
+import Users from "./db/Users.ts";
+import IUser from "./model/IUser.ts";
 
 const userRouter = new Router();
 
@@ -18,12 +20,18 @@ userRouter
   })
   .get("/users/:username", (ctx: RouterContext) => {
     const { request, response, params } = ctx;
+    const user: IUser | undefined = Users.find((usr) =>
+      usr.username.toLowerCase() === params.username?.toLocaleLowerCase()
+    );
+    const data: any = user ? user : ``;
     const username = params.username;
     response.status = 200;
     response.body = {
       sucess: true,
       msg: `[GET] /users/${username}`,
-      data: "there is no data right now",
+      data: user
+        ? `${user?.username} has been found`
+        : `${params.username} not found`,
     };
   })
   .post("/users", async (ctx: RouterContext) => {
