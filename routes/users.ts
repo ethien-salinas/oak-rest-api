@@ -3,12 +3,12 @@ import {
   Router,
   RouterContext,
 } from "https://deno.land/x/oak/mod.ts";
-import Users from "./db/Users.ts";
-import IUser from "./model/IUser.ts";
+import Users from "../db/Users.ts";
+import IUser from "../model/IUser.ts";
 
-const userRouter = new Router();
+const router = new Router();
 
-userRouter
+router
   .get("/users", (ctx: RouterContext) => {
     const { request, response } = ctx;
     response.status = 200;
@@ -31,7 +31,7 @@ userRouter
       msg: `[GET] /users/${username}`,
       data: user
         ? `${user?.username} has been found`
-        : `${params.username} not found`,
+        : `${params.username} has not been found`,
     };
   })
   .post("/users", async (ctx: RouterContext) => {
@@ -65,4 +65,4 @@ userRouter
     };
   });
 
-export default userRouter;
+export default router;
