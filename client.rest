@@ -12,6 +12,26 @@ Content-Type: application/json
   "time": "Wed, 21 Oct 2015 18:27:50 GMT"
 }
 ###
+POST http://localhost:8000/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "username": "edgar",
+  "password": "qwerty"
+}
+###
+POST http://localhost:8000/users HTTP/1.1
+Content-Type: application/json
+
+{
+  "name": "sample",
+  "time": "Wed, 21 Oct 2015 18:27:50 GMT"
+}
+###
+PUT http://localhost:8000/users/nobody HTTP/1.1
+Content-Type: application/json
+
+###
 PUT http://localhost:8000/users/alex HTTP/1.1
 Content-Type: application/json
 
@@ -20,7 +40,7 @@ Content-Type: application/json
   "password": "qwerty"
 }
 ###
-PUT http://localhost:8000/users/ana HTTP/1.1
+PUT http://localhost:8000/users/pablo HTTP/1.1
 Content-Type: application/json
 
 {
@@ -29,3 +49,5 @@ Content-Type: application/json
 }
 ###
 DELETE http://localhost:8000/users/yoeli-ovando HTTP/1.1
+###
+DELETE http://localhost:8000/users/pablo HTTP/1.1
