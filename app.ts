@@ -1,7 +1,7 @@
 import { Application } from "https://deno.land/x/oak/mod.ts";
-import userRouter from "./route/users.ts";
+import userRouter from "./router/users.ts";
 import logger from "./middleware/logger.ts";
-import responseTime from "./middleware/response-time.ts";
+import responseTime from "./middleware/responseTime.ts";
 
 const app = new Application();
 
